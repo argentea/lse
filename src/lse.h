@@ -1,5 +1,6 @@
 #pragma once
 
+#include"parser.h"
 #include<iostream>
 #include<math.h>
 #include<vector>
@@ -27,6 +28,6 @@ private:
 public:
 	Net(vector<vector<double>> data, double gamma, double weight);
 	double log_sum_exp();
-	double forWard();
+	vector<vector<double>> gradients();
 };
 };
