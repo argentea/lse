@@ -4,11 +4,18 @@
 #include<sstream>
 #include<vector>
 
+#define PARSERTEST 1
+#define CHECKANS 0
+
 using namespace std;
 namespace Parser {
 class Parser {
 private:
 	vector<vector<double>> vertexList;
+#if CHECKANS
+	vector<vector<double>> gradientsList;
+	double ans;
+#endif
 	double gamma;
 	double weight;
 public:

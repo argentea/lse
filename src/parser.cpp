@@ -1,7 +1,6 @@
 #include"parser.h"
 #include<errno.h>
 #include<cstring>
-#define PARSERTEST 0
 using namespace std;
 
 namespace Parser {
@@ -21,9 +20,9 @@ Parser::Parser(const char* fileName) {
 			sline >> tmp;
 			if(!getPinNum&&stringstream(tmp) >> pinNum) {
 				getPinNum = true;
-				if(PARSERTEST) {
+#if PARSERTEST
 					cout << endl << "Parser::pinNum: " << pinNum << endl;
-				}
+#endif
 				getline(dataFile, line);
 				sline.clear();
 				sline << line;
@@ -31,18 +30,18 @@ Parser::Parser(const char* fileName) {
 			}
 			if(getPinNum&&!getWeight&&stringstream(tmp) >> weight) {
 				getWeight = true;
-				if(PARSERTEST) {
+#if PARSERTEST
 					cout << endl << "Parser::weight: " << weight << endl;
-				}
+#endif
 				getline(dataFile, line);
 				sline.clear();
 				sline << line;
 				continue;
 			}
 			if(getPinNum&&getWeight&&stringstream(tmp) >> gamma) {
-				if(PARSERTEST) {
+#if PARSERTEST
 					cout << endl << "Parser::gamma: " << gamma << endl;
-				}
+#endif
 				break;
 			}
 
@@ -51,9 +50,9 @@ Parser::Parser(const char* fileName) {
 		int indexi = 0;
 		int tmpint = 0;
 		while (getline(dataFile, line)) {
-			if(PARSERTEST) {
+#if PARSERTEST
 				cout << line << endl;
-			}
+#endif
 			stringstream dline;
 			dline << line;
 			string tmp;
@@ -61,9 +60,9 @@ Parser::Parser(const char* fileName) {
 			while (!dline.eof()){
 				dline >> tmp;
 				if(stringstream(tmp) >> vertexList[indexi][indexj]){
-					if(PARSERTEST) {
+#if PARSERTEST
 						cout << vertexList[indexi][indexj] << " ";
-					}
+#endif
 					indexj++;
 					if(indexj >= 2){
 						indexi++;
