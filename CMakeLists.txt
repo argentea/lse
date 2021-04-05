@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
-project(hw1)
-add_library(${PROJECT_NAME} INTERFACE)
-
-target_include_directories(${PROJECT_NAME}
-	INTERFACE
-	${PROJECT_SOURCE_DIR}/src)
-
-#add_subdirectory(equivalence)
-add_subdirectory(tautology)
+project(LSE)
+file(GLOB SOURCES
+        src/*.cpp
+        src/*.cc
+        src/*.c)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
+add_executable(test test.cpp)
+target_link_libraries(test ${PROJECT_NAME})
